@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/table.css"/>
+    <meta charset="UTF-8">
+    <title>Авторизация</title>
+</head>
+<body>
+<div class=menu>
+    <ul>
+        <li> Авторизация </li>
+    </ul>
+</div>
+<form method="get">
+    <p>
+        Администратор
+    <input type="submit" name="admin" value='Войти'>
+    </p>
+</form>
+<form>
+    <p>
+        Студент
+    <select name="student">
+        {% set n = len(combo_box) %}
+        {% for i in range(n) %}
+            <option value={{ combo_box.loc[i, "id_students"] }}>
+            {{ combo_box.loc[i, "fio"] }}
+            </option>
+        {% endfor %}
+    </select>
+    <input type="submit" name="student_login_button" value='Войти'>
+    </form>
+<form>
+    </p>
+    <p>
+        <input required type="text" name="new_fio" placeholder="Введите ФИО">
+    <select name="group_id">
+        {% set n = len(umik) %}
+        {% for i in range(len(umik_box)) %}
+                <option  value={{ umik_box.loc[i, "id_group"] }}>
+                {{ umik_box.loc[i, "group_name"] }}
+                </option>
+        {% endfor %}
+    </select>
+    <input type="submit" name="registration_button" value='Зарегистрироваться'>
+    </p>
+</form>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/style.css"/>
+    <title>Новый студент</title>
+    {% import "macros.html" as macros %}
+</head>
+<body>
+<div class=menu>
+    <ul>
+        <li class=active><a href="/">Новый студент</a></li>
+    </ul>
+</div>
+<div class=block>
+    <form action="{{ url_for('index') }}" method="get">
+        <p>
+            <label>
+                ФИО студента:
+                <input type="text" name="new_student" required>
+            </label>
+                <p>
+                Группа: <br>
+                <input type="radio" name="new_id_group" value='0'> Приборостроение <br>
+                <input type="radio" name="new_id_group" value='1'> Программная инженерия <br>
+                <input type="radio" name="new_id_group" value='2'> Информационная безопасность <br>
+                <input type="radio" name="new_id_group" value='3'> Юриспруденция <br>
+                <input type="radio" name="new_id_group" value='4'> Строительство <br>
+                <input type="radio" name="new_id_group" value='5'> Кораблестроение <br>
+                <input type="radio" name="new_id_group" value='6'> Прикладная информатика <br>
+                <input type="radio" name="new_id_group" value='7'> Горное дело <br>
+                <input type="radio" name="new_id_group" value='8'> Международные отношения <br>
+                <input type="radio" name="new_id_group" value='9'> Политология <br>
+                </p>
+            </label>
+        </p>
+        <p>
+            <input type="submit" value="Добавить студента">
+            <input type="button" onclick="window.location='{{ url_for('index') }}'" value="Отменить">
+        </p>
+    </form>
+</div>
+</body>
+</html>

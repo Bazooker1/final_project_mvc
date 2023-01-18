@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/table.css"/>
+    <title>Карточка студента</title>
+    {% import "macros.html" as macros %}
+</head>
+<body>
+    {% if  isAdminLogged %}
+            <p>Вы вошли как администратор</p>
+        {% else %}
+        {% set n = len(combo_box) %}
+        {% for i in range(n) %}
+            {% set id_s = combo_box.loc[i, "id_students"] %}
+            {% if id_s == id_students %}
+                <p>Вы вошли как {{ combo_box.loc[i, "fio"] }}</p>
+            {% endif %}
+        </option>
+        {% endfor %}
+    {% endif %}
+    <form action='' method="get">
+        <input type="submit" name="exit_button" value="Выйти">
+    </form>
+<div class=menu>
+    <ul>
+        <li class=active><a href={{ url_for("index") }}>Студент</a></li>
+        {% if isAdminLogged %}
+        <li><a href={{ url_for('activity') }}>Мероприятия</a></li>
+        {% endif %}
+    </ul>
+</div>
+<div class=block>
+    <p>
+        {% if isAdminLogged %}
+    <form action='' method="get">
+        Студент:
+        {{ macros.render_students(combo_box, id_students, len) }}
+        <input type="submit" value="Найти">
+    </form>
+        {% endif %}
+    </p>
+    </p>
+    <form action="{{ url_for('new_student') }}" method="get">
+    </form>
+    </p>
+    {{ macros.render_table("Карточка", student_has_activities, "student_has_activities_id", len) }}
+    </p>
+    <form action={{ url_for('search') }} method="get">
+        {% if not isAdminLogged %}
+        <input type="submit" value="Поиск">
+        {% endif %}
+    </form>
+    </p>
+</div>
+
+</body>
+</html>

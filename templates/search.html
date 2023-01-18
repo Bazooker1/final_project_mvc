@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск</title>
+    <link rel="stylesheet" type="text/css" href="/static/search.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/style.css"/>
+    {% import "macros.html" as macros %}
+</head>
+<body>
+<div class=menu>
+    <ul>
+        <li class=active><a href="/">Поиск мероприятий</a></li>
+    </ul>
+</div>
+<div class="content">
+    <div class="lists">
+        <form action="" method="post">
+            {{ macros.render_filters('Тип мероприятия', activity_types, sel_activity_types, len) }}
+            {{ macros.render_filters('Роль', roles, sel_roles, len) }}
+            <br>
+            <input type="submit" value="Найти">
+            <input type="submit" name="clear" value="Очистить">
+        </form>
+    </div>
+    <div class="result">
+        <form action="{{ url_for('index') }}" method="get">
+            <input type="submit" name="noselect" value="Не выбирать">
+        </form>
+        <div class="chosen">
+            {{ macros.render_selected(activity_types, sel_activity_types, 'Тип мероприятия', len) }}
+            {{ macros.render_selected(roles, sel_roles, 'Роль', len) }}
+        </div>
+        <div class="cards">
+            {{ macros.render_cards(card, len) }}
+        </div>
+    </div>
+</div>
+</body>
+</html>

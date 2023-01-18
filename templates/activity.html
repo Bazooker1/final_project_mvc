@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/table.css"/>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/style.css"/>
+    <title>Мероприятия</title>
+    {% import "macros.html" as macros %}
+</head>
+<body>
+<div class=menu>
+    <ul>
+        <li><a href="{{ url_for('index') }}">Студент</a></li>
+        <li class=active><a href="{{ url_for('activity') }}">Мероприятия</a></li>
+    </ul>
+</div>
+<div class=block>
+    <form action='/activity' method="get">
+            Мероприятие:
+            {{ macros.render_activities(df_activities, id_activities, len) }}
+            <input type="submit" name="find_activity_button" value="Найти">
+    </form>
+    {% if len(df_activities_students) > 0 %}
+            {{ macros.render_table("Активности студентов", df_activities_students, "id_activities", len) }}
+    {% endif %}
+</div>
+</body>
+</html>
